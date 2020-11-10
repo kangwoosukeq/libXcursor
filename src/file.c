@@ -155,9 +155,9 @@ _XcursorReadUInt (XcursorFile *file, XcursorUInt *u)
     if (!file || !u)
         return XcursorFalse;
 
-    if ((*file->read) (file, bytes, 4) != 4)
+    if (fread(bytes, 1, 4, file) != 4)
 	return XcursorFalse;
-    *u = ((bytes[0] << 0) |
+    u[0] = ((bytes[0] << 0) |
 	  (bytes[1] << 8) |
 	  (bytes[2] << 16) |
 	  (bytes[3] << 24));
